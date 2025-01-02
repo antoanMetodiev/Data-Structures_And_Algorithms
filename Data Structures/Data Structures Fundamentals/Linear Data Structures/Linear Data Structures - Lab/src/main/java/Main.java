@@ -1,18 +1,22 @@
-import implementations.ArrayList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        2 45 1 4 1 54 1 4 1 3
 
-        ArrayList<String> names = new ArrayList<>();
+        int[] inputNumbers = Arrays.stream(reader.readLine()
+                        .split("\\s+")).mapToInt(Integer::parseInt).toArray();
 
-        names.add("1");
-        names.add("2");
-        names.add("3");
-        names.add("4");
+        int[] sorter = new int[100];
 
+        for (int inputNumber : inputNumbers) {
+            sorter[inputNumber]++;
+        }
 
-        System.out.println(names.indexOf("4"));
-
-
+        Arrays.stream(sorter).forEach(System.out::println);
     }
 }

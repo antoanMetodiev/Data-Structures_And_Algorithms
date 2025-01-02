@@ -17,7 +17,6 @@ public class ArrayList<E> implements List<E> {
         this.capacity = INITIAL_SIZE;
     }
 
-
     @Override
     public boolean add(E element) {
         if (this.size == this.capacity) {
