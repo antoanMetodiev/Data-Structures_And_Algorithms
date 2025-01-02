@@ -74,15 +74,24 @@ public class Stack<E> implements AbstractStack<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            @Override
-            public boolean hasNext() {
-                return size == 0;
+        private Node<E> current = head; 
+
+        @Override
+        public boolean hasNext() {
+            // Проверяваме дали има още елементи в стека
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
             }
 
-            @Override
-            public E next() {
-                return top.element;
-            }
-        };
+            E element = current.element;  // Запазваме стойността на текущия елемент
+            current = current.next;       // Преминаваме към следващия елемент
+            return element;
+        }
+    };
     }
 }
