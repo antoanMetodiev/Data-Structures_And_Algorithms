@@ -13,7 +13,7 @@ public class Stack<E> implements AbstractStack<E> {
         this.size = 0;
     }
 
-    private static class Node<E> {
+    private class Node<E> {
         private E element;
         private Node<E> next;
 
