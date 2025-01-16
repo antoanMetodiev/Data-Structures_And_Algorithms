@@ -3,7 +3,6 @@ package implementations;
 import interfaces.Heap;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,16 +29,18 @@ public class MaxHeap<E extends Comparable<E>> implements Heap<E> {
         while (index > 0 && parentIsLess(index, parentIndex)) {
             Collections.swap(this.elements, index, parentIndex);
             index = parentIndex;
+            parentIndex = (index - 1) / 2;
         }
     }
 
     private boolean parentIsLess(int lastIndex, int parentIndex) {
+        if (lastIndex < 0 || parentIndex < 0) return false;
         return this.elements.get(lastIndex).compareTo(this.elements.get(parentIndex)) > 0;
     }
 
     @Override
     public E peek() {
-        if (this.elements.isEmpty()) throw new IllegalArgumentException();
+        if (this.elements.isEmpty()) throw new IllegalStateException();
         return this.elements.get(0);
     }
 }
